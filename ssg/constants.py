@@ -29,6 +29,7 @@ SSG_REF_URIS = {
     'hipaa': 'https://www.gpo.gov/fdsys/pkg/CFR-2007-title45-vol1/pdf/CFR-2007-title45-vol1-chapA-subchapC.pdf',
     'ism': 'https://www.cyber.gov.au/acsc/view-all-content/ism',
     'iso27001-2013': 'https://www.iso.org/contents/data/standard/05/45/54534.html',
+    'itsar': 'https://nccs.gov.in/public/itsar/ITSAR404042308.pdf',
     'nerc-cip': 'https://www.nerc.com/pa/Stand/AlignRep/One%20Stop%20Shop.xlsx',
     'stigid': 'https://www.cyber.mil/stigs/downloads/?_dl_facet_stigs=operating-systems%2Cunix-linux',
     'os-srg': 'https://www.cyber.mil/stigs/downloads/?_dl_facet_stigs=operating-systems%2Cgeneral-purpose-os',
@@ -97,6 +98,7 @@ ccn_ns = "https://www.ccn-cert.cni.es/pdf/guias/series-ccn-stic/guias-de-acceso-
 cis_ns = "https://www.cisecurity.org/benchmark/red_hat_linux/"
 hipaa_ns = "https://www.gpo.gov/fdsys/pkg/CFR-2007-title45-vol1/pdf/CFR-2007-title45-vol1-chapA-subchapC.pdf"
 anssi_ns = "https://cyber.gouv.fr/sites/default/files/document/linux_configuration-en-v2.pdf"
+itsar_ns = "https://nccs.gov.in/public/itsar/ITSAR404042308.pdf"
 ospp_ns = "https://www.niap-ccevs.org/Profile/PP.cfm"
 pcidss4_ns = "https://docs-prv.pcisecuritystandards.org/PCI%20DSS/Standard/PCI-DSS-v4_0.pdf"
 cui_ns = 'http://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-171.pdf'
@@ -275,6 +277,9 @@ REFERENCES = dict(
     cui=Reference(
         id="cui", name=REF_PREFIX_MAP["cui"], url=cui_ns,
         regex_with_groups=r"(\d+)(?:\.(\w+)(?:\.(\w+)(?:\.(\w+))?)?)?"),
+    itsar=Reference(
+        id="itsar", name="ITSAR", url=itsar_ns,
+        regex_with_groups=r"(\d+)\.(\d+)(?:\.(\d+)(?:\.(\d+))?)?"),
     nist=Reference(
         id="nist", name=REF_PREFIX_MAP["nist"], url="",
         regex_with_groups=r".*-(\d+)(?:\((\d+)\))?"),
