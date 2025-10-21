@@ -23,6 +23,7 @@ SSG_REF_URIS = {
     'cui': 'http://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-171.pdf',
     'dcid': 'not_officially_available',
     'disa': 'https://www.cyber.mil/stigs/cci/',
+    'itsar': 'https://nccs.gov.in/public/itsar/ITSAR404042308.pdf',
     'pcidss': 'https://www.pcisecuritystandards.org/documents/PCI_DSS_v3-2-1.pdf',
     'pcidss4': 'https://docs-prv.pcisecuritystandards.org/PCI%20DSS/Standard/PCI-DSS-v4_0.pdf',
     'ospp': 'https://www.niap-ccevs.org/Profile/PP.cfm',
@@ -275,6 +276,9 @@ REFERENCES = dict(
     cui=Reference(
         id="cui", name=REF_PREFIX_MAP["cui"], url=cui_ns,
         regex_with_groups=r"(\d+)(?:\.(\w+)(?:\.(\w+)(?:\.(\w+))?)?)?"),
+    itsar=Reference(
+        id="itsar", name="ITSAR", url=SSG_REF_URIS["itsar"],
+        regex_with_groups=r"(\d+)\.(\d+)\.(\d+)"),
     nist=Reference(
         id="nist", name=REF_PREFIX_MAP["nist"], url="",
         regex_with_groups=r".*-(\d+)(?:\((\d+)\))?"),

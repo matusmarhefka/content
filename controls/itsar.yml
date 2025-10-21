@@ -1,0 +1,874 @@
+---
+policy: 'Indian Telecom Security Assurance Requirements (ITSAR)'
+title: 'Indian Telecom Security Assurance Requirements (ITSAR)'
+id: itsar
+version: '404042308'
+source: https://nccs.gov.in/public/itsar/ITSAR404042308.pdf
+
+levels:
+    - id: base
+
+reference_type: itsar
+product: rhel9
+
+controls:
+    # Section 1: Access and Authorization
+    - id: 2.1.1
+      title: Management Protocols Mutual Authentication
+      levels:
+          - base
+      description: |-
+          The system management shall support mutual authentication mechanisms, the mutual
+          authentication mechanism can rely on the protocol used for the interface itself or other
+          means. Secure cryptographic controls prescribed in Table1 of the latest document
+          "Cryptographic Controls For Indian Telecom Security Assurance Requirements (ITSAR)"
+          shall only be used for management and maintenance.
+
+    - id: 2.1.2
+      title: Management Traffic Protection
+      levels:
+          - base
+      description: |-
+          The management traffic shall be protected strictly using secure cryptographic controls
+          prescribed in Table1 of the latest document "Cryptographic Controls For Indian Telecom
+          Security Assurance Requirements (ITSAR)" only.
+
+    - id: 2.1.3
+      title: Role-based access control policy
+      levels:
+          - base
+      description: |-
+          The system shall support Role-Based Access Control (RBAC). A role-based access control
+          system uses a set of controls that determines how users interact with domains and
+          resources. The RBAC system controls how users or groups of users are allowed access to
+          the various domains and what type of operation they can perform. The system shall support
+          RBAC with minimum of 3 user roles, in particular, for OAM privilege management for System
+          Management and Maintenance, including authorization of the operation for configuration
+          data and software via the network product console interface.
+
+    - id: 2.1.4
+      title: User Authentication – Local/Remote
+      levels:
+          - base
+      description: |-
+          The various user and machine accounts on a system shall be protected from misuse. To this
+          end, an authentication attribute is typically used, which, when combined with the username,
+          enables unambiguous authentication and identification of the authorized user. Minimum two
+          of the authentication attributes (cryptographic keys, token, passwords) shall be mandatorily
+          combined for protecting all the accounts from misuse. An exception to this requirement is
+          local access and machine accounts where at least one authentication attribute shall be
+          supported.
+
+    - id: 2.1.5
+      title: Remote login restrictions for privileged users
+      levels:
+          - base
+      description: |-
+          Login to system as root or equivalent highest privileged user shall be limited to the system
+          console only. Root user will not be allowed to login to remotely. This remote root user
+          access restriction is also applicable to application software's / tools such as TeamViewer,
+          desktop sharing which provide remote access to the system.
+
+    - id: 2.1.6
+      title: Authorization Policy
+      levels:
+          - base
+      description: |-
+          The authorizations for accounts and applications shall be reduced to the minimum required
+          for the tasks they have to perform. Authorizations to a system shall be restricted to a level
+          in which a user can only access data and use functions that he needs in the course of his
+          work. Alongside access to data, execution of applications and components shall also take
+          place with rights that are as low as possible. Applications shall not be executed with
+          administrator or system rights.
+
+    - id: 2.1.7
+      title: Unambiguous identification of the user & group accounts removal
+      levels:
+          - base
+      description: |-
+          Users shall be identified unambiguously by the system. System shall support the assignment
+          of individual accounts per user, where a user could be a person, or, for Machine Accounts,
+          an application, or a system. System shall not enable the use of group accounts or group
+          credentials, or sharing of the same account between several users.
+
+    - id: 2.1.8
+      title: Out of band Management
+      levels:
+          - base
+      description: |-
+          Management interfaces shall be secured from remote access through Out-of-band management
+          network that is not accessible from the internet. Multi-factor authentication (MFA) shall
+          be used for remote access through VPN.
+
+    # Section 2: Authentication Attribute Management
+    - id: 2.2.1
+      title: Authentication Policy
+      levels:
+          - base
+      description: |-
+          The usage of a system function without successful authentication on basis of the user
+          identity and at least two authentication attributes (e.g. password, certificate) shall be
+          prevented. For machine accounts and local access one authentication attribute will be
+          sufficient. System functions comprise, for example network services (like SSH, SFTP, Web
+          services), local access via a management console, local usage of operating system and
+          applications.
+
+    - id: 2.2.2
+      title: Authentication Support – External
+      levels:
+          - base
+      description: |-
+          If the system supports external authentication mechanism such as AAA server then the
+          communication between system and the external authentication entity shall be protected
+          using the authentication and related service protocols built strictly using the Secure
+          cryptographic controls prescribed in Table1 of the latest document "Cryptographic Controls
+          For Indian Telecom Security Assurance Requirements ( ITSAR )" only.
+
+    - id: 2.2.3
+      title: Protection against brute force and dictionary attacks
+      levels:
+          - base
+      description: |-
+          A protection against brute force and dictionary attacks that hinder authentication attribute
+          guessing shall be implemented in system. In order to achieve higher security, two or more
+          measures (timer delay, account blocking, authentication attribute blacklist, CAPTCHA) shall
+          be mandatorily supported by System. An exception to this requirement is machine accounts.
+
+    - id: 2.2.4
+      title: Enforce Strong Password
+      levels:
+          - base
+      description: |-
+          The configuration setting shall be such that a system shall only accept passwords that
+          comply with the following complexity criteria: Absolute minimum length of 8 characters,
+          Password shall mandatorily comprise all the following four categories of characters (at
+          least 1 uppercase, 1 lowercase, 1 digit, 1 special character). Password shall not be stored
+          in clear text in the system; passwords shall be salted and hashed.
+
+    - id: 2.2.5
+      title: Inactive Session timeout
+      levels:
+          - base
+      description: |-
+          An OAM user interactive session shall be terminated automatically after a specified period
+          of inactivity. It shall be possible to configure an inactivity time-out period. The system
+          shall monitor inactive sessions of administrative login users and initiate session locking
+          mechanism based on user configurable timers. Reauthentication of the OAM user shall be
+          repeated following any period of inactivity lasting 15 minutes or longer.
+
+    - id: 2.2.6
+      title: Password Changes
+      levels:
+          - base
+      description: |-
+          If a password is used as an authentication attribute, then the system shall offer a function
+          that enables a user to change his password at any time. Password change shall be enforced
+          after initial login. System shall enforce password change based on password management
+          policy including password expiry. Previously used passwords shall not be allowed up to a
+          certain number (Password History). The minimum password age shall be set as one day.
+
+    - id: 2.2.7
+      title: Protected Authentication feedback
+      levels:
+          - base
+      description: |-
+          The Authentication attribute shall not be displayed in such a way that it could be seen and
+          misused by a casual local observer. Typically, the individual characters of the password
+          are replaced by a character such as "*".
+
+    - id: 2.2.8
+      title: Removal of predefined or default authentication attributes
+      levels:
+          - base
+      description: |-
+          Predefined or default authentication attributes shall be deleted or disabled (or changed).
+          Normally, authentication attributes such as password or cryptographic keys will be
+          preconfigured from producer, OEM or developer of a system. Such authentication attributes
+          shall be changed by automatically forcing a user to change it on 1st time login to the
+          system or the OEM provides instructions on how to manually change it.
+
+    - id: 2.2.9
+      title: Logout function
+      levels:
+          - base
+      description: |-
+          The system shall have a function that allows a signed-in user to logout at any time. All
+          processes under the logged-in user ID shall be terminated on logout. The network product
+          shall be able to continue to operate without interactive sessions.
+
+    - id: 2.2.10
+      title: Policy regarding consecutive failed login attempts
+      levels:
+          - base
+      description: |-
+          The maximum permissible number of consecutive failed user account login attempts shall be
+          configurable by the operator. The definition of the default value set at manufacturing time
+          for the maximum number of failed user account login attempts shall be less than or equal to
+          8, typically 5. After the maximum permissible number of consecutive failed user account
+          login attempts is exceeded by a user, there shall be a block delay in allowing the user to
+          attempt login again.
+
+    - id: 2.2.11
+      title: Suspend accounts on non-use
+      levels:
+          - base
+      description: |-
+          It shall be possible for the system to automatically suspend an account after 'X' days
+          without a valid login.
+
+    # Section 3: Software Security
+    - id: 2.3.1
+      title: Secure Update
+      levels:
+          - base
+      description: |-
+          For software updates, the system shall support software package integrity validation via
+          cryptographic means, e.g. digital signature, code signing certificate (valid and not time
+          expired) and using Secure cryptographic controls prescribed in Table1 of the latest document
+          "Cryptographic Controls For Indian Telecom Security Assurance Requirements (ITSAR)" only.
+
+    - id: 2.3.2
+      title: Secure Upgrade
+      levels:
+          - base
+      description: |-
+          The system's Software package integrity shall be validated in the installation/upgrade stage.
+          The system shall support software package integrity validation via cryptographic means.
+          Tampered software shall not be executed or installed if the integrity check fails. A security
+          mechanism is required to guarantee that only authorized individuals can initiate and deploy
+          a software upgrade.
+
+    - id: 2.3.3
+      title: Source code security assurance
+      levels:
+          - base
+      description: |-
+          OEM shall follow best security practices including secure coding for software development.
+          Industry standard best practices of secure coding have been followed during the entire
+          software development life cycle. System software shall be free from CWE top 25, OWASP top 10
+          security vulnerabilities and OWASP top 10 API Security vulnerabilities.
+
+    - id: 2.3.4
+      title: Known Malware and backdoor Check
+      levels:
+          - base
+      description: |-
+          OEM shall submit an undertaking stating that the system is free from all known malware and
+          backdoors as on the date of offer of system to designated TSTL for testing.
+
+    - id: 2.3.5
+      title: No unused software
+      levels:
+          - base
+      description: |-
+          Software components or parts of software which are not needed for operation or functionality
+          of the system shall not be present. Orphaned software components/packages shall not be
+          present in system.
+
+    - id: 2.3.6
+      title: Unnecessary Services Removal
+      levels:
+          - base
+      description: |-
+          The system shall only run protocol handlers and services which are needed for its operation
+          and which do not have any known security vulnerabilities. By default, all other ports and
+          services will be permanently disabled. The system Shall not support following services: FTP,
+          TFTP, Telnet, rlogin/RCP/RSH, HTTP, SNMPv1 and v2, SSHv1, TCP/UDP Small Servers, Finger,
+          BOOTP server, Discovery protocols, IP Identification Service, PAD, MOP.
+
+    - id: 2.3.7
+      title: Restricting System Boot Source
+      levels:
+          - base
+      description: |-
+          The system can boot only from the memory devices intended for this purpose.
+
+    - id: 2.3.8
+      title: Secure Time Synchronization
+      levels:
+          - base
+      description: |-
+          The reliable time and date information shall be provided through NTP/PTP server. All
+          elements/functions which require time stamp shall establish secure communication channel
+          strictly using Secure cryptographic controls prescribed in Table 1 of the latest document
+          "Cryptographic Controls For Indian Telecom Security Assurance Requirements (ITSAR)" with
+          NTP/PTP server. Audit logs shall be generated for all changes to time settings.
+
+    - id: 2.3.9
+      title: Restricted reachability of services
+      levels:
+          - base
+      description: |-
+          The system shall restrict the reachability of services such that they can be reached only on
+          interfaces meant for the purpose. Administrative services (e.g., SSH, HTTPS, RDP) shall be
+          restricted to interfaces in the management plane for separation of management traffic from
+          user traffic.
+
+    - id: 2.3.10
+      title: Self Testing
+      levels:
+          - base
+      description: |-
+          A cryptographic module shall perform power-up self-tests and conditional self-tests to
+          ensure that the module is functioning properly. If a cryptographic module fails a self-test,
+          the module shall enter an error state and output an error indicator. The cryptographic
+          module shall not perform any cryptographic operations while in an error state.
+
+    # Section 4: System Secure Execution Environment
+    - id: 2.4.1
+      title: No unused functions
+      levels:
+          - base
+      description: |-
+          Unused functions i.e the software and hardware functions which are not needed for operation
+          or functionality of the system shall be deactivated in the system's software and/or hardware.
+          The list of hardware and software functions installed in the system shall match with the ones
+          that have been mentioned and deemed necessary for the operation of the system.
+
+    - id: 2.4.2
+      title: No unsupported components
+      levels:
+          - base
+      description: |-
+          OEM to ensure that the system shall not contain software and hardware components that are no
+          longer supported by them or their 3rd Parties including the opensource communities, such as
+          components that have reached end-of-life or end-of-support.
+
+    - id: 2.4.3
+      title: Avoidance of Unspecified mode of Access
+      levels:
+          - base
+      description: |-
+          System shall not contain any wireless access mechanism which is unspecified or not declared.
+          The system does not contain any wireless, optical, magnetic or any other component that may
+          be used as a covert channel.
+
+    # Section 5: User Audit
+    - id: 2.5.1
+      title: Audit trail storage and protection
+      levels:
+          - base
+      description: |-
+          The security event log shall be access controlled (file access rights) such that only
+          privilege users have access to the log files.
+
+    - id: 2.5.2
+      title: Audit Event Generation
+      levels:
+          - base
+      description: |-
+          The system shall log all important Security events with unique System Reference details.
+          System shall record within each audit record at least information pertaining to Date and
+          time of the event, type of event, subject identity, protocol, service or program used for
+          access, source and destination IP addresses & ports and the outcome (success or failure) of
+          the event.
+
+    - id: 2.5.3
+      title: Secure Log Export
+      levels:
+          - base
+      description: |-
+          The system shall support (preferably immediate) forwarding of security event logging data to
+          an external system available in redundant configuration by push or pull mechanism through
+          redundant links. The system shall be able to store the generated audit data locally. Secure
+          Log export shall comply the secure cryptographic controls prescribed in Table1 of the latest
+          document "Cryptographic Controls for Indian Telecom Security Assurance Requirements (ITSAR)"
+          only.
+
+    - id: 2.5.4
+      title: Logging access to personal data
+      levels:
+          - base
+      description: |-
+          In some cases, access to personal data in a clear text might be required. If such access is
+          required, access to this data shall be logged, and the log shall contain who accessed what
+          data without revealing personal data in clear text.
+
+    - id: 2.5.5
+      title: Security audit log
+      levels:
+          - base
+      description: |-
+          The security audit log must not contain authentication credentials, even if encrypted (e.g
+          password), Access Tokens-To be masked when outputting, or Proprietary or sensitive personal
+          information.
+
+    - id: 2.5.6
+      title: Audit Logs
+      levels:
+          - base
+      description: |-
+          All security logging mechanisms must be active from system initialization. Logs must be time
+          synchronized. Security audit logs must be protected in transit and at rest. Successful and
+          unsuccessful changes to privilege level, security policy changes, starting and stopping of
+          security logging and processes must be logged.
+
+    - id: 2.5.7
+      title: Centralized log Auditing
+      levels:
+          - base
+      description: |-
+          All the NFV, SDN and MANO elements shall submit security events (e.g. authentication,
+          authorization and accounting, login attempts, administration functions and configurations)
+          to a centralized platform, which shall monitor and analyse in real time the messages for
+          possible attempts at intrusion.
+
+    # Section 6: Data Protection
+    - id: 2.6.1
+      title: Cryptographic Based Secure Communication
+      levels:
+          - base
+      description: |-
+          The system shall Communicate with the connected entities strictly using the secure
+          cryptographic controls prescribed in Table1 of the latest document "Cryptographic Controls
+          For Indian Telecom Security Assurance Requirements (ITSAR)" only.
+
+    - id: 2.6.2
+      title: Cryptographic Module Security Assurance
+      levels:
+          - base
+      description: |-
+          Cryptographic module embedded inside the system (in the form of hardware, software or
+          firmware) that provides all the necessary security services such as authentication, integrity
+          and confidentiality is designed and implemented in compliance with FIPS 140-2 or later as
+          prescribed by NIST standards.
+
+    - id: 2.6.3
+      title: Cryptographic Algorithms implementation Security Assurance
+      levels:
+          - base
+      description: |-
+          Cryptographic algorithm implemented inside the Crypto module of system shall be in compliance
+          with the respective FIPS standards (for the specific crypto algorithm).
+
+    - id: 2.6.4
+      title: Protecting data and information – Confidential System Internal Data
+      levels:
+          - base
+      description: |-
+          When system is in normal operational mode there shall be no system function that reveals
+          confidential system internal data in the clear text to users and administrators. Access to
+          maintenance mode shall be restricted only to authorised privileged user.
+
+    - id: 2.6.5
+      title: Protecting data and information in storage
+      levels:
+          - base
+      description: |-
+          For sensitive data (persistent or temporary) in storage, read access rights shall be
+          restricted. Sensitive files of system that are needed for the functionality shall be protected
+          against manipulation strictly using the Secure cryptographic controls prescribed in Table1 of
+          the latest document "Cryptographic Controls For Indian Telecom Security Assurance Requirements
+          (ITSAR)" with appropriate non-repudiation controls.
+
+    - id: 2.6.6
+      title: Protection against Copy of Data
+      levels:
+          - base
+      description: |-
+          Without authentication and except for specified purposes, system shall not create a copy of
+          data in use or data in transit. Protective measures shall exist against use of available
+          system functions / software residing in system to create copy of data for illegal
+          transmission.
+
+    - id: 2.6.7
+      title: Protection against Data Exfiltration - Overt Channel
+      levels:
+          - base
+      description: |-
+          System shall have mechanisms to prevent data exfiltration attacks for theft of data in use
+          and data in transit. Establishment of outbound overt channels such as, HTTPS, IM, P2P, Email
+          etc. are to be forbidden if they are auto-initiated by / auto-originated from the System.
+          Session logs shall be generated for establishment of any session initiated by either user or
+          system.
+
+    - id: 2.6.8
+      title: Protection against Data Exfiltration - Covert Channel
+      levels:
+          - base
+      description: |-
+          System shall have mechanisms to prevent data exfiltration attacks for theft of data in use
+          and data in transit. Establishment of outbound covert channels and tunnels such as DNS Tunnel,
+          HTTPS Tunnel, ICMP Tunnel, TLS, SSL, SSH, IPSEC VPN, RTP Encapsulation etc. are to be
+          forbidden if they are auto-initiated by / auto-originated from the System.
+
+    # Section 7: Network Services
+    - id: 2.7.1
+      title: Traffic Filtering – Network Level
+      levels:
+          - base
+      description: |-
+          The system shall provide a mechanism to filter incoming IP packets on any IP interface at
+          Network Layer and Transport Layer of the stack ISO/OSI. The system shall provide a mechanism
+          to allow specified actions (Discard/Drop, Accept, Account) when a filter rule matches. The
+          System shall provide a mechanism to disable/enable each defined rule.
+
+    - id: 2.7.2
+      title: Traffic Separation
+      levels:
+          - base
+      description: |-
+          The system shall support the physical or logical separation of traffic belonging to different
+          network domains. For example, O&M traffic and control plane traffic belong to different
+          network domains.
+
+    - id: 2.7.3
+      title: Traffic Protection –Anti-Spoofing
+      levels:
+          - base
+      description: |-
+          The system shall not process IP Packets if their source address is not reachable via the
+          incoming interface. Implementation example: Use of "Reverse Path Filter" (RPF) provides this
+          function.
+
+    - id: 2.7.4
+      title: Network security
+      levels:
+          - base
+      description: |-
+          Network security requirements including topology hiding, dedicated interfaces for NFVs,
+          production and O&M traffic separation, connectivity from management to production cluster
+          through firewall, network resource pools configuration, internal virtual switching control,
+          VLAN and VXLAN zoning, dedicated network infrastructure, and protection of all OAM traffic.
+
+    # Section 8: Attack Prevention Mechanisms
+    - id: 2.8.1
+      title: Network Level and application-level DDoS
+      levels:
+          - base
+      description: |-
+          The system shall have protection mechanism against Network level and Application-level DDoS
+          attacks. The system shall provide security measures to deal with overload situations which
+          may occur as a result of a denial-of-service attack or during periods of increased traffic.
+          In particular, partial or complete impairment of system availability shall be avoided.
+
+    - id: 2.8.2
+      title: Excessive Overload Protection
+      levels:
+          - base
+      description: |-
+          The system shall act in a predictable way if an overload situation cannot be prevented.
+          System shall be built in this way that it can react on an overload situation in a controlled
+          way. It shall be ensured that System cannot reach an undefined and thus potentially insecure,
+          state.
+
+    - id: 2.8.3
+      title: Manipulated packets protection
+      levels:
+          - base
+      description: |-
+          The system shall not be affected in its availability or robustness by incoming packets from
+          other network elements that are manipulated or differing the norm. Appropriate packets shall
+          be detected as invalid and be discarded. This includes protection against SYN flooding, Land
+          attack, Smurf attack, Teardrop attack, Ping-of-death attack, and uncorrelated reply packets.
+
+    # Section 9: Vulnerability Testing Requirements
+    - id: 2.9.1
+      title: Fuzzing – Network and Application Level
+      levels:
+          - base
+      description: |-
+          It shall be ensured that externally reachable services of system are reasonably robust when
+          receiving unexpected input.
+
+    - id: 2.9.2
+      title: Port Scanning
+      levels:
+          - base
+      description: |-
+          It shall be ensured that on all network interfaces of system, only documented ports on the
+          transport layer respond to requests from outside the system.
+
+    - id: 2.9.3
+      title: Vulnerability Scanning
+      levels:
+          - base
+      description: |-
+          The vulnerabilities found during the Vulnerability Scanning/Assessment process shall be
+          remediated. Critical vulnerabilities (CVSS 9.0-10.0) to be patched immediately, High (7.0-8.9)
+          within a month, Medium (4.0-6.9) within three months, Low (0.1-3.9) within a year. Zero-day
+          vulnerabilities shall be remediated immediately or as soon as possible.
+
+    # Section 10: Operating System
+    - id: 2.10.1
+      title: Growing Content Handling
+      levels:
+          - base
+      description: |-
+          Growing or dynamic content shall not influence system functions. A file system that reaches
+          its maximum capacity shall lead to an event getting logged with appropriate message parameters
+          and shall not stop the system from operating properly.
+
+    - id: 2.10.2
+      title: Handling of ICMP
+      levels:
+          - base
+      description: |-
+          Processing of ICMPv4 and ICMPv6 packets which are not required for operation shall be disabled
+          on the system. System shall not send certain ICMP types by default but it may support the
+          option to enable utilization of these types.
+
+    - id: 2.10.3
+      title: Authenticated Privilege Escalation only
+      levels:
+          - base
+      description: |-
+          Privilege escalation shall only be possible through authenticated mechanisms. Unauthorized
+          privilege escalation shall be prevented.
+
+    - id: 2.10.4
+      title: System account identification
+      levels:
+          - base
+      description: |-
+          System accounts shall be clearly identified and distinguished from user accounts. System
+          accounts shall not have login capabilities unless required for operation.
+
+    - id: 2.10.5
+      title: OS Hardening - Minimized kernel network functions
+      levels:
+          - base
+      description: |-
+          The kernel network functions shall be minimized to only those required for operation. Unused
+          network functions and protocols shall be disabled.
+
+    - id: 2.10.6
+      title: No automatic launch of removable media
+      levels:
+          - base
+      description: |-
+          The system shall not automatically execute programs from removable media. Autorun and autoplay
+          functionality shall be disabled.
+
+    - id: 2.10.7
+      title: External file system mount restrictions
+      levels:
+          - base
+      description: |-
+          Mounting of external file systems shall be restricted and controlled. Only authorized
+          administrators shall be able to mount external file systems.
+
+    - id: 2.10.8
+      title: File-system Authorization privileges
+      levels:
+          - base
+      description: |-
+          File system authorization privileges shall be properly configured to ensure that only
+          authorized users and processes can access sensitive files and directories.
+
+    - id: 2.10.9
+      title: SYN Flood Prevention
+      levels:
+          - base
+      description: |-
+          The system shall implement protection mechanisms against SYN flood attacks, such as SYN
+          cookies or connection rate limiting.
+
+    - id: 2.10.10
+      title: Handling of IP options and extensions
+      levels:
+          - base
+      description: |-
+          IP options and extensions that are not required for operation shall be disabled or filtered.
+          The system shall have appropriate handling mechanisms for IP options and extensions.
+
+    # Section 11: Web Servers
+    - id: 2.11.1
+      title: HTTPS
+      levels:
+          - base
+      description: |-
+          Web servers shall use HTTPS for all communications. HTTP shall be disabled or redirected to
+          HTTPS.
+
+    - id: 2.11.2
+      title: Webserver logging
+      levels:
+          - base
+      description: |-
+          Web servers shall log all access attempts, errors, and security-relevant events with
+          sufficient detail for audit purposes.
+
+    - id: 2.11.3
+      title: HTTPS input validation
+      levels:
+          - base
+      description: |-
+          All input received through HTTPS connections shall be validated to prevent injection attacks
+          and other input-based vulnerabilities.
+
+    - id: 2.11.4
+      title: No system privileges
+      levels:
+          - base
+      description: |-
+          Web server processes shall not run with system or administrator privileges. They shall run
+          with minimal privileges required for operation.
+
+    - id: 2.11.5
+      title: No unused HTTPS methods
+      levels:
+          - base
+      description: |-
+          Unused HTTP/HTTPS methods shall be disabled. Only methods required for operation (typically
+          GET, POST) shall be enabled.
+
+    - id: 2.11.6
+      title: No unused add-ons
+      levels:
+          - base
+      description: |-
+          Web server add-ons, modules, and extensions that are not required for operation shall be
+          disabled or removed.
+
+    - id: 2.11.7
+      title: No compiler, interpreter, or shell via CGI or other server-side scripting
+      levels:
+          - base
+      description: |-
+          Access to compilers, interpreters, or shells through CGI or other server-side scripting
+          mechanisms shall be prevented.
+
+    - id: 2.11.8
+      title: No CGI or other scripting for uploads
+      levels:
+          - base
+      description: |-
+          CGI or other scripting mechanisms shall not be used for file uploads unless absolutely
+          necessary and properly secured.
+
+    - id: 2.11.9
+      title: No execution of system commands with SSI
+      levels:
+          - base
+      description: |-
+          Server Side Includes (SSI) shall not allow execution of system commands. If SSI is used, the
+          exec command shall be disabled.
+
+    - id: 2.11.10
+      title: Access rights for web server configuration
+      levels:
+          - base
+      description: |-
+          Web server configuration files shall have appropriate access rights to prevent unauthorized
+          modification. Only administrators shall have write access.
+
+    - id: 2.11.11
+      title: No default content
+      levels:
+          - base
+      description: |-
+          Default web server content, including default pages, examples, and documentation, shall be
+          removed.
+
+    - id: 2.11.12
+      title: No directory listings
+      levels:
+          - base
+      description: |-
+          Directory listing functionality shall be disabled to prevent disclosure of directory contents.
+
+    - id: 2.11.13
+      title: Web server information in HTTPS headers
+      levels:
+          - base
+      description: |-
+          HTTP/HTTPS response headers shall not reveal detailed web server version information or other
+          system details.
+
+    - id: 2.11.14
+      title: Web server information in error pages
+      levels:
+          - base
+      description: |-
+          Error pages shall not reveal detailed web server version information, system paths, or other
+          sensitive system details.
+
+    - id: 2.11.15
+      title: Minimized file type mappings
+      levels:
+          - base
+      description: |-
+          File type mappings and MIME types shall be minimized to only those required for operation.
+
+    - id: 2.11.16
+      title: Restricted file access
+      levels:
+          - base
+      description: |-
+          Web server shall implement mechanisms to restrict access to files outside the web root
+          directory and prevent directory traversal attacks.
+
+    - id: 2.11.17
+      title: Execute rights exclusive for CGI/Scripting directory
+      levels:
+          - base
+      description: |-
+          Execute permissions shall be restricted to designated CGI or scripting directories only.
+          Other directories shall not have execute permissions.
+
+    - id: 2.11.18
+      title: HTTP User session
+      levels:
+          - base
+      description: |-
+          HTTP/HTTPS user sessions shall be properly managed with secure session identifiers, appropriate
+          timeouts, and protection against session hijacking and fixation attacks.
+
+    # Section 12: Other Security requirements
+    - id: 2.12.1
+      title: Remote Diagnostic Procedure – Verification
+      levels:
+          - base
+      description: |-
+          Remote diagnostic procedures shall be properly authenticated and authorized. All remote
+          diagnostic activities shall be logged.
+
+    - id: 2.12.2
+      title: No System Password Recovery
+      levels:
+          - base
+      description: |-
+          The system shall not provide mechanisms for password recovery that could be exploited by
+          unauthorized users. Password reset shall require proper authentication and authorization.
+
+    - id: 2.12.3
+      title: Secure System Software Revocation
+      levels:
+          - base
+      description: |-
+          The system shall support secure revocation of compromised software components using
+          cryptographic means.
+
+    - id: 2.12.4
+      title: Software Integrity Check –Installation
+      levels:
+          - base
+      description: |-
+          Software integrity shall be verified during installation using cryptographic mechanisms such
+          as digital signatures or checksums.
+
+    - id: 2.12.5
+      title: Software Integrity Check – Boot
+      levels:
+          - base
+      description: |-
+          Software integrity shall be verified during system boot using secure boot mechanisms or other
+          cryptographic verification methods.
+
+    - id: 2.12.6
+      title: Unused Physical and Logical Interfaces Disabling
+      levels:
+          - base
+      description: |-
+          Physical and logical interfaces that are not required for system operation shall be disabled
+          or removed.
+
+    - id: 2.12.7
+      title: No Default Profile
+      levels:
+          - base
+      description: |-
+          The system shall not use default security profiles or configurations. All security settings
+          shall be explicitly configured according to security requirements.
+
